@@ -1,0 +1,25 @@
+.Mainpage {
+  background-color: rgb(16, 16, 24);
+  margin: auto;
+  margin-top: 145px;
+  padding: 50px;
+  min-height: 100vh;
+}
+.AddBtn {
+  position: fixed;
+  top: 160px;
+  right: 30px;
+  border: none;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-color: greenyellow;
+  color: white;
+  font-weight: bolder;
+  transition: 500ms;
+}
+.AddBtn:hover {
+  background-color: white;
+  color: greenyellow;
+  border: thick solid greenyellow;
+}

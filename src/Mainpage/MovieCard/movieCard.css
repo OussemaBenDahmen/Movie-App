@@ -1,0 +1,57 @@
+.MovieList {
+  display: flex;
+  flex-wrap: wrap;
+}
+.MovieCard {
+  position: relative;
+  border: rgb(29, 63, 109) thin solid;
+  background-color: white;
+  border-radius: 7px;
+  width: 200px;
+  min-height: 200px;
+  margin: 20px auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.MoviePoster {
+  width: 100%;
+  height: 65%;
+}
+.MovieInfo {
+  padding: 10px;
+}
+.DetailBtn {
+  width: 100px;
+  height: 30px;
+  background-color: orangered;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-weight: bolder;
+  filter: contrast(0.8);
+  transition: 500ms;
+}
+.DetailBtn:hover {
+  filter: contrast(1);
+  border-radius: 0;
+  box-shadow: 0px 5px 5px black;
+}
+.favIcon {
+  position: absolute;
+  min-width: 30px;
+  min-height: 30px;
+  right: 20px;
+  top: 20px;
+  padding: 5px;
+  background: none;
+  border: none;
+  filter: grayscale(1);
+  transition: 400ms;
+}
+.favIcon:hover {
+  filter: grayscale(0);
+}
+.favIcon > img {
+  width: 30px;
+}

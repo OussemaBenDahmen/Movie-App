@@ -1,0 +1,153 @@
+.App {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.myNavbar {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(15, 13, 17);
+  border-bottom: solid thick rgb(29, 63, 109);
+  box-shadow: currentColor 0px 5px 10px;
+  z-index: 321351;
+  position: fixed;
+  top: 0;
+}
+
+/*****************************************************/
+
+.navMenu {
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 50px;
+}
+
+.navlink {
+  text-decoration: none;
+  color: rgb(175, 171, 171);
+  transition: 500ms;
+}
+.Active {
+  color: white;
+}
+.navlink:hover {
+  color: rgb(65, 130, 214);
+}
+.home-logo {
+  border-radius: 70%;
+  transition: 500ms;
+}
+.home-logo:hover {
+  box-shadow: white 3px 2px 2px;
+  margin-top: -5px;
+  margin-left: -2px;
+  border-left: white solid;
+  border-top: white solid;
+  border-radius: 0;
+}
+
+/*******************************************************/
+
+.SearchBar {
+  width: 40%;
+  max-width: 40%;
+  display: flex;
+  align-items: center;
+}
+.SearchBar > input {
+  background-color: rgb(27, 26, 26);
+  border: thin solid rgb(61, 59, 59);
+  padding: 5px;
+  border-radius: 7px;
+  color: white;
+  margin-right: 10px;
+}
+.searchBtn {
+  background: none;
+  padding-top: 5px;
+  width: 60px;
+  border: thin solid rgb(61, 59, 59);
+  border-radius: 7px;
+  transition: 400ms;
+}
+
+.searchBtn:hover {
+  border: solid white thin;
+  background-color: gray;
+  margin-top: -5px;
+  box-shadow: rgb(90, 90, 90) 0px 5px 2px;
+}
+
+/***********************************************/
+
+.Account {
+  display: flex;
+  justify-content: flex-end;
+  padding: 50px;
+}
+
+.SignUpBtn {
+  font-weight: bold;
+  width: 120px;
+  height: 40px;
+  border-radius: 7px;
+  border: thin solid orangered;
+  background-color: rgb(255, 123, 0);
+  color: white;
+  transition: 500ms;
+}
+.SignUpBtn:hover {
+  margin-top: -5px;
+  background-color: rgb(255, 147, 46);
+  box-shadow: 0px 5px 2px rgb(175, 85, 0);
+}
+
+.Body {
+  margin-top: 0;
+}
+
+/********************************/
+
+@media only screen and (max-width: 827px) {
+  .SearchBar {
+    width: 30px;
+    margin-left: 10px;
+  }
+
+  .SearchBar > input {
+    display: none;
+  }
+
+  .home-logo {
+    display: none;
+  }
+  .navMenu {
+    padding: 20px;
+  }
+  .navlink {
+    margin: 5px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .myNavbar {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+  }
+  .SearchBar {
+    align-self: flex-start;
+    margin-left: 70px;
+  }
+  .SearchBar > input {
+    display: inline;
+  }
+}

@@ -1,0 +1,80 @@
+.Signup-modal {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  min-height: 110%;
+  border: thin solid gainsboro;
+  background-color: rgba(46, 43, 43, 0.678);
+  z-index: 123120000000;
+  margin-top: -200px;
+}
+
+.Signup-Form {
+  padding: 50px;
+  width: 35%;
+  min-height: 400px;
+  border: thin rgba(128, 128, 128, 0.479) solid;
+  border-radius: 7px;
+  z-index: 1231200000000;
+  position: absolute;
+  top: 20%;
+  left: 30%;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 5px 5px 20px;
+}
+.CloseBtn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  color: white;
+  font-weight: bolder;
+  font-size: larger;
+  background-color: rgb(255, 17, 0);
+  border: none;
+  border-top-right-radius: 7px;
+  transition: 400ms;
+}
+.CloseBtn:hover {
+  background-color: rgba(255, 17, 0, 0.705);
+}
+input {
+  border: none;
+  border-bottom: thin turquoise solid;
+  background-color: rgba(216, 191, 216, 0.233);
+  width: 80%;
+  height: 30px;
+}
+/*********************************/
+.Modal-Btns {
+  margin-top: 30px;
+}
+
+.Submit,
+.AddMovie {
+  width: 200px;
+  height: 30px;
+  border: red;
+  background-color: rgb(255, 30, 75);
+  border-radius: 3px;
+  color: white;
+  transition: 400ms;
+}
+.Cancel {
+  width: 150px;
+  height: 30px;
+  border: teal;
+  background-color: turquoise;
+  border-radius: 3px;
+  color: white;
+  transition: 400ms;
+}
+.Submit,
+.Cancel {
+  margin: 10px;
+}
+.Submit:hover,
+.Cancel:hover {
+  filter: opacity(0.6);
+}
