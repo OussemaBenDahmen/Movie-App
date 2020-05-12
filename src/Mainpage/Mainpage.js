@@ -7,7 +7,12 @@ class Mainpage extends Component {
     console.log(this.props.Movies);
     return (
       <div className="Mainpage">
-        <MovieCard Movies={this.props.Movies} AddFav={this.props.AddFav} />
+        <MovieCard
+          Movies={this.props.Movies}
+          AddFav={this.props.AddFav}
+          Rating={this.props.Rating}
+        />
+
         <button className="AddBtn" onClick={this.props.OpenFilmModal}>
           Add a Film
         </button>

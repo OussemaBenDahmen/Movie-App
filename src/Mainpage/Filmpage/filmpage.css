@@ -1,4 +1,42 @@
-div {
-  margin-top: 300px;
-  background-color: greenyellow;
+.Filmpage {
+  margin-top: 130px;
+  background-color: rgb(16, 16, 24);
+  color: white;
+  padding: 5px;
+  display: flex;
+}
+.MovieInfos {
+  margin-left: 30px;
+  align-self: flex-end;
+}
+.Desc {
+  line-height: 1cm;
+  text-align: justify;
+  animation: appear2 2s;
+}
+@keyframes appear2 {
+  0% {
+    margin-left: 500px;
+    opacity: 0;
+  }
+  100% {
+    margin-left: 0;
+    opacity: 1;
+  }
+}
+.MovieImage {
+  width: 345px;
+  height: 517px;
+  animation: appear 2s;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.title {
+  font-size: 50px;
 }
