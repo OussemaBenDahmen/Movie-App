@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class Rating extends Component {
-  table = this.props.el.rate.split("");
+  table = this.props.rate.split("");
   render() {
     return (
       <div>

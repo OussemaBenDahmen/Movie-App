@@ -55,3 +55,7 @@
 .favIcon > img {
   width: 30px;
 }
+.rating {
+  font-size: 25px;
+  color: rgb(255, 208, 0);
+}

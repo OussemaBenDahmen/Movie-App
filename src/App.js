@@ -124,12 +124,50 @@ class App extends Component {
     this.setState({ Email: e.target.value });
   };
   /***********the serach functionalities*************/
-  Search = (e) => {
-    this.setState({ value: e.target.value });
-  };
   SearchRate = (e) => {
-    console.log(e);
+    this.setState({ rate: Number(e) });
+    switch (this.state.rate) {
+      case 5:
+        this.setState({
+          Films: this.state.Films.filter((el) => el.rate.length >= 5),
+        });
+        break;
+      case 4:
+        this.setState({
+          Films: this.state.Films.filter((el) => el.rate.length >= 4),
+        });
+        break;
+      case 3:
+        this.setState({
+          Films: this.state.Films.filter((el) => el.rate.length >= 3),
+        });
+        break;
+      case 2:
+        this.setState({
+          Films: this.state.Films.filter((el) => el.rate.length >= 2),
+        });
+        break;
+      default:
+        this.setState({
+          Films: this.state.Films,
+        });
+        break;
+    }
   };
+  SearchName = (e) => {
+    this.setState({ value: e.target.value });
+    if (e.target.value.length != "" && this.state.rate) {
+      this.setState({
+        Films: this.state.Films.filter((el) =>
+          el.title.toLowerCase().includes(e.target.value)
+        ),
+      });
+    } else {
+      this.setState({ Films: this.movies });
+    }
+  };
+
+  Searchall = () => {};
 
   /***********Add Film Functions****************/
   GetFilmName = (e) => {
@@ -149,7 +187,11 @@ class App extends Component {
   };
   GetFilmRate = (e) => {
     if (/^[1-5]$/.test(e.target.value)) {
-      this.setState({ movieRate: e.target.value });
+      let stars = [];
+      for (let i = 0; i < Number(e.target.value); i++) {
+        stars.push("*");
+      }
+      this.setState({ movieRate: stars.join("") });
     } else {
       e.target.value = "";
     }
@@ -222,7 +264,7 @@ class App extends Component {
                   type="text"
                   name="Search-Bar"
                   placeholder="Search"
-                  onChange={this.Search}
+                  onChange={this.SearchName}
                 />
                 <SearchByRate SearchRate={this.SearchRate} />
               </div>
@@ -241,17 +283,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/">
                 <Mainpage
-                  Movies={
-                    this.state.value
-                      ? this.state.rate
-                        ? this.movies.filter((el) =>
-                            el.title.toLowerCase().includes(this.state.rate)
-                          )
-                        : this.movies.filter((el) =>
-                            el.title.toLowerCase().includes(this.state.value)
-                          )
-                      : this.movies
-                  }
+                  Movies={this.state.Films}
                   AddFav={this.AddFav}
                   OpenFilmModal={this.OpenFilmModal}
                   Rating={this.Rating}
