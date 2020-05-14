@@ -20,7 +20,7 @@ class MovieCard extends Component {
             <img className="MoviePoster" src={el.image} alt="" />
             <div className="MovieInfo">
               <h5>{el.title}</h5>
-              {this.props.Rating}
+              <p className="rating">{el.rate}</p>
               <Link to={`/${el.title}`}>
                 <button className="DetailBtn">View Details</button>
               </Link>

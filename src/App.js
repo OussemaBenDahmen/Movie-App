@@ -7,9 +7,9 @@ import Mainpage from "./Mainpage/Mainpage";
 import AddMovieForm from "./Mainpage/AddMovieForm/AddMovieForm";
 import Favourites from "./Favourites/Favourites";
 import logo from "./logo.png";
-import Rating from "./Rating";
 import SearchByRate from "./SearchByRate";
-/*let profiles = [];*/
+import Log from "./sign_in-log_in/Log";
+const profiles = [];
 
 class App extends Component {
   /**********Movie List**************/
@@ -99,9 +99,11 @@ class App extends Component {
   Favourites = [];
   state = {
     modalShow: false,
+    isHidden: false,
     movieImage: "https://upload.wikimedia.org/wikipedia/en/6/60/No_Picture.jpg",
     movieRate: "N/A",
     Films: this.movies,
+    rate: 1,
   };
   /***********************Functionalities*******************************/
 
@@ -109,7 +111,9 @@ class App extends Component {
   DisplayModal = () => {
     this.setState({ modalShow: true });
   };
-
+  DisplayLogModal = () => {
+    this.setState({ LogmodalShow: true });
+  };
   OpenFilmModal = () => {
     this.setState({ AddFilmModal: true });
   };
@@ -123,42 +127,62 @@ class App extends Component {
   GetEmail = (e) => {
     this.setState({ Email: e.target.value });
   };
+  GetPassword = (e) => {
+    this.setState({ Password: e.target.value });
+  };
+  GetPasswordConfirm = (e) => {
+    this.setState({ PasswordConfirmation: e.target.value });
+  };
+  /*************SignUp/Login************/
+  Signup = () => {
+    if (/[a-z\s]*/gi.test(this.state.name)) {
+      if (/[a-z]*@[a-z]*/g.test(this.state.Email)) {
+        if (this.state.Password === this.state.PasswordConfirmation) {
+          profiles.push({
+            name: this.state.name,
+            Email: this.state.Email,
+            Password: this.state.Password,
+          });
+          this.setState({ modalShow: false });
+        } else {
+          alert("password confirmation dont match");
+        }
+      } else {
+        alert("Enter a valid email");
+      }
+    } else {
+      alert("name should contain only alphabet");
+    }
+  };
+  Login = () => {
+    if (this.state.Email === profiles[0].Email) {
+      if (this.state.password === profiles[0].password) {
+        alert(`hey ${this.state.Email}`);
+      }
+    }
+  };
   /***********the serach functionalities*************/
   SearchRate = (e) => {
     this.setState({ rate: Number(e) });
-    switch (this.state.rate) {
-      case 5:
-        this.setState({
-          Films: this.state.Films.filter((el) => el.rate.length >= 5),
-        });
-        break;
-      case 4:
-        this.setState({
-          Films: this.state.Films.filter((el) => el.rate.length >= 4),
-        });
-        break;
-      case 3:
-        this.setState({
-          Films: this.state.Films.filter((el) => el.rate.length >= 3),
-        });
-        break;
-      case 2:
-        this.setState({
-          Films: this.state.Films.filter((el) => el.rate.length >= 2),
-        });
-        break;
-      default:
-        this.setState({
-          Films: this.state.Films,
-        });
-        break;
+    if (!this.state.value) {
+      this.setState({ Films: this.movies.filter((el) => el.rate.length >= e) });
+    } else {
+      let newfilm = this.movies.filter((el) =>
+        el.title.toLowerCase().includes(this.state.value)
+      );
+      this.setState({
+        Films: newfilm.filter((el) => el.rate.length >= e),
+      });
     }
   };
   SearchName = (e) => {
     this.setState({ value: e.target.value });
     if (e.target.value.length != "" && this.state.rate) {
+      let ratedfilm = this.movies.filter(
+        (el) => el.rate.length >= this.state.rate
+      );
       this.setState({
-        Films: this.state.Films.filter((el) =>
+        Films: ratedfilm.filter((el) =>
           el.title.toLowerCase().includes(e.target.value)
         ),
       });
@@ -167,11 +191,9 @@ class App extends Component {
     }
   };
 
-  Searchall = () => {};
-
   /***********Add Film Functions****************/
   GetFilmName = (e) => {
-    if (/^[a-z0-9\.:\s]{0,16}$/gi.test(e.target.value)) {
+    if (/^[a-z0-9:\s]{0,16}$/gi.test(e.target.value)) {
       this.setState({ movieName: e.target.value });
     } else {
       e.target.value = "";
@@ -211,6 +233,21 @@ class App extends Component {
     });
     this.setState({ movieRate: "N/A" });
   };
+  /***************Editing movie description*********************/
+  Edit = () => {
+    this.setState({ isHidden: true });
+  };
+  GetIndex = (el) => {
+    this.setState({ index: this.movies.indexOf(el) });
+    this.setState({ newDescription: el.Description });
+  };
+  DescriptionEditor = (value) => {
+    this.setState({ newDescription: value });
+  };
+  ChangeDescription = () => {
+    this.movies[this.state.index].Description = this.state.newDescription;
+    this.setState({ isHidden: false });
+  };
   /************adding a movie to favourites**************/
 
   AddFav = (el) => {
@@ -235,6 +272,17 @@ class App extends Component {
               HideModal={this.HideModal}
               GetName={this.GetName}
               GetEmail={this.GetEmail}
+              GetPassword={this.GetPassword}
+              GetPasswordConfirm={this.GetPasswordConfirm}
+              Signup={this.Signup}
+            />
+          ) : null}
+          {this.state.LogmodalShow ? (
+            <Log
+              HideModal={this.HideModal}
+              GetEmail={this.GetEmail}
+              GetPassword={this.GetPassword}
+              Signup={this.Login}
             />
           ) : null}
           {this.state.AddFilmModal ? (
@@ -275,6 +323,12 @@ class App extends Component {
                   value="SignUp"
                   onClick={this.DisplayModal}
                 />
+                <input
+                  type="button"
+                  className="SignUpBtn"
+                  value="Login"
+                  onClick={this.DisplayLogModal}
+                />
               </div>
             </nav>
           </div>
@@ -303,11 +357,20 @@ class App extends Component {
               </Route>
               {this.movies.map((el) => (
                 <Route path={`/${el.title}`}>
-                  <Filmpage el={el} />
+                  <Filmpage
+                    el={el}
+                    isHidden={this.state.isHidden}
+                    GetIndex={this.GetIndex}
+                    ChangeDescription={this.ChangeDescription}
+                    DescriptionEditor={this.DescriptionEditor}
+                    newDescription={this.state.newDescription}
+                    Edit={this.Edit}
+                  />
                 </Route>
               ))}
             </Switch>
           </div>
+          {/* <Footer /> */}
         </div>
       </Router>
     );

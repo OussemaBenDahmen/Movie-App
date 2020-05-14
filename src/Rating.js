@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
 class Rating extends Component {
-  table = this.props.rate.split("");
+  table = this.props.el.rate.split("");
   render() {
     return (
       <div>
-        {this.table.map((el) => (
+        {this.table.map(() => (
           <img
             className={"star"}
             src={
