@@ -1,11 +1,13 @@
 .Filmpage {
-  margin-top: 130px;
+  margin-top: 145px;
+  min-height: 600px;
   background-color: rgb(16, 16, 24);
   color: white;
   padding: 5px;
   display: flex;
 }
 .MovieInfos {
+  margin-bottom: 100px;
   margin-left: 30px;
   align-self: flex-end;
 }
@@ -45,7 +47,7 @@ h3 {
   color: rgb(255, 208, 0);
 }
 .text-area {
-  width: 70vw;
+  width: 68vw;
   min-height: 20vh;
   padding-top: 30px;
   background: none;

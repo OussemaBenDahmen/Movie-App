@@ -9,6 +9,7 @@ import Favourites from "./Favourites/Favourites";
 import logo from "./logo.png";
 import SearchByRate from "./SearchByRate";
 import Log from "./sign_in-log_in/Log";
+import Footer from "./Footer";
 const profiles = [];
 
 class App extends Component {
@@ -104,6 +105,7 @@ class App extends Component {
     movieRate: "N/A",
     Films: this.movies,
     rate: 1,
+    isLogged: false,
   };
   /***********************Functionalities*******************************/
 
@@ -115,7 +117,17 @@ class App extends Component {
     this.setState({ LogmodalShow: true });
   };
   OpenFilmModal = () => {
-    this.setState({ AddFilmModal: true });
+    if (this.state.isLogged === true) {
+      this.setState({ AddFilmModal: true });
+    } else {
+      this.setState({ modalShow: true });
+    }
+  };
+  HideModal = () => {
+    this.setState({ modalShow: false });
+  };
+  HideLogModal = () => {
+    this.setState({ LogmodalShow: false });
   };
   hideFilmModal = () => {
     this.setState({ AddFilmModal: false });
@@ -143,6 +155,9 @@ class App extends Component {
             Email: this.state.Email,
             Password: this.state.Password,
           });
+          localStorage.setItem("mail", this.state.Email);
+          localStorage.setItem("pass", this.state.Password);
+          this.setState({ isLogged: true });
           this.setState({ modalShow: false });
         } else {
           alert("password confirmation dont match");
@@ -155,11 +170,16 @@ class App extends Component {
     }
   };
   Login = () => {
-    if (this.state.Email === profiles[0].Email) {
-      if (this.state.password === profiles[0].password) {
-        alert(`hey ${this.state.Email}`);
-      }
+    let mail = localStorage.getItem("mail");
+    let pass = localStorage.getItem("pass");
+    if (this.state.Email === mail && this.state.Password === pass) {
+      this.setState({ LogmodalShow: false });
+      alert("Welcome to MovieFy");
+      this.setState({ isLogged: true });
     }
+  };
+  Logout = () => {
+    this.setState({ isLogged: false });
   };
   /***********the serach functionalities*************/
   SearchRate = (e) => {
@@ -235,7 +255,11 @@ class App extends Component {
   };
   /***************Editing movie description*********************/
   Edit = () => {
-    this.setState({ isHidden: true });
+    if (this.state.isLogged) {
+      this.setState({ isHidden: true });
+    } else {
+      this.setState({ modalShow: true });
+    }
   };
   GetIndex = (el) => {
     this.setState({ index: this.movies.indexOf(el) });
@@ -251,9 +275,11 @@ class App extends Component {
   /************adding a movie to favourites**************/
 
   AddFav = (el) => {
-    this.Favourites.push(this.movies[el]);
-    console.log(el);
-    console.log(this.Favourites);
+    if (this.state.isLogged) {
+      this.Favourites.push(this.movies[el]);
+    } else {
+      this.setState({ modalShow: true });
+    }
   };
   /****************Removing a movie from favourites********************/
   RemoveFav = (e) => {
@@ -261,7 +287,12 @@ class App extends Component {
     console.log(this.Favourites);
     this.setState({ change: "changed" });
   };
-  /**************Rating***************/
+  /**************Removing a movie from the list***************/
+
+  RemoveFilm = (i) => {
+    this.state.Films.splice(i, 1);
+    this.setState({ change: "changed" });
+  };
 
   render() {
     return (
@@ -279,10 +310,10 @@ class App extends Component {
           ) : null}
           {this.state.LogmodalShow ? (
             <Log
-              HideModal={this.HideModal}
+              HideLogModal={this.HideLogModal}
               GetEmail={this.GetEmail}
               GetPassword={this.GetPassword}
-              Signup={this.Login}
+              Login={this.Login}
             />
           ) : null}
           {this.state.AddFilmModal ? (
@@ -316,20 +347,33 @@ class App extends Component {
                 />
                 <SearchByRate SearchRate={this.SearchRate} />
               </div>
-              <div className="Account">
-                <input
-                  type="button"
-                  className="SignUpBtn"
-                  value="SignUp"
-                  onClick={this.DisplayModal}
-                />
-                <input
-                  type="button"
-                  className="SignUpBtn"
-                  value="Login"
-                  onClick={this.DisplayLogModal}
-                />
-              </div>
+              {this.state.isLogged ? (
+                <div>
+                  <span>
+                    <input
+                      type="button"
+                      className="LogOutBtn"
+                      value="Log Out"
+                      onClick={this.Logout}
+                    />
+                  </span>
+                </div>
+              ) : (
+                <div className="Account">
+                  <input
+                    type="button"
+                    className="SignUpBtn"
+                    value="SignUp"
+                    onClick={this.DisplayModal}
+                  />
+                  <input
+                    type="button"
+                    className="SignUpBtn"
+                    value="Login"
+                    onClick={this.DisplayLogModal}
+                  />
+                </div>
+              )}
             </nav>
           </div>
           {/* ------------------------------------- */}
@@ -341,6 +385,8 @@ class App extends Component {
                   AddFav={this.AddFav}
                   OpenFilmModal={this.OpenFilmModal}
                   Rating={this.Rating}
+                  RemoveFilm={this.RemoveFilm}
+                  isLogged={this.state.isLogged}
                 />
               </Route>
               <Route path="/Favourites">
@@ -370,7 +416,7 @@ class App extends Component {
               ))}
             </Switch>
           </div>
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </Router>
     );

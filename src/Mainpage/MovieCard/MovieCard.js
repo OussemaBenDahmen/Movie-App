@@ -18,6 +18,17 @@ class MovieCard extends Component {
                 alt=""
               />
             </button>
+            {this.props.isLogged ? (
+              <button
+                className="favIcon favIcon2"
+                onClick={() => this.props.RemoveFilm(index)}
+              >
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"
+                  alt=""
+                />
+              </button>
+            ) : null}
             <img className="MoviePoster" src={el.image} alt="" />
             <div className="MovieInfo">
               <h5>{el.title}</h5>

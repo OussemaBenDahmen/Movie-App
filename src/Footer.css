@@ -1,0 +1,41 @@
+.Container {
+  padding: 50px;
+  background-color: rgb(15, 13, 17);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  color: rgba(255, 255, 255, 0.836);
+  border-top: thin solid gray;
+}
+.footer-title {
+  font-size: xx-large;
+}
+.Container p {
+  width: 50%;
+  text-align: justify;
+  font-size: 17px;
+}
+.Link-List {
+  width: 80%;
+  text-decoration: none;
+  list-style: none;
+  line-height: 25px;
+}
+.list-styled a {
+  color: rgba(255, 255, 255, 0.74);
+  text-decoration: none;
+  transition: 400ms;
+}
+.list-styled a:hover {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  filter: brightness(100);
+}
+.Copyrights {
+  background-color: rgb(29, 63, 109);
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  height: 80px;
+  padding: 10px;
+}

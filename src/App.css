@@ -7,12 +7,13 @@
   margin: 0;
   width: 100%;
   height: 100%;
+  margin: 0;
 }
 
 .myNavbar {
   width: 100%;
   max-width: 100%;
-  min-height: 100px;
+  min-height: 145px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -111,7 +112,25 @@
   background-color: rgb(255, 147, 46);
   box-shadow: 0px 5px 2px rgb(175, 85, 0);
 }
+.LogOutBtn {
+  margin-right: 30px;
+  text-align: center;
+  font-weight: bold;
+  width: 120px;
+  height: 40px;
+  border-radius: 7px;
+  border: thin solid rgb(43, 255, 0);
+  background-color: rgb(0, 218, 29);
+  color: white;
+  transition: 500ms;
+}
+.LogOutBtn:hover {
+  margin-top: -5px;
+  background-color: rgb(46, 255, 63);
+  box-shadow: 0px 5px 2px rgb(0, 175, 9);
+}
 
+/****************************/
 .Body {
   margin-top: 0;
 }

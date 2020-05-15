@@ -7,24 +7,28 @@ export default class AddMovie extends Component {
         <form className="Signup-Form">
           <h2 className="Modal-Title">Add a Movie</h2>
           <hr />
-          <button className="CloseBtn" onClick={this.props.HideModal}>
-            X
-          </button>
-          <h3>movie name</h3>
+          <input
+            type="button"
+            value="X"
+            className="CloseBtn"
+            onClick={this.props.hideFilmModal}
+          />
+
+          <h4>movie name</h4>
           <input
             Name="Name"
             type="text"
             placeholder="Enter the movie name"
             onChange={this.props.GetFilmName}
           />
-          <h3>Image Link</h3>
+          <h4>Image Link</h4>
           <input
             Name="Link"
             type="text"
             placeholder="Url"
             onChange={this.props.GetFilmImage}
           />
-          <h3>Movie Rate</h3>
+          <h4>Movie Rate</h4>
           <input
             Name="Rate"
             type="text"
@@ -34,12 +38,19 @@ export default class AddMovie extends Component {
 
           <div className="Modal-Btns">
             <span>
-              <button className="AddMovie" onClick={this.props.AddFilm}>
-                Add Movie
-              </button>
-              <button className="Cancel" onClick={this.props.hideFilmModal}>
-                Cancel
-              </button>
+              <input
+                type="button"
+                value="Add Movie"
+                className="AddMovie"
+                onClick={this.props.AddFilm}
+              />
+
+              <input
+                type="button"
+                value="Cancel"
+                className="Cancel"
+                onClick={this.props.hideFilmModal}
+              />
             </span>
           </div>
         </form>

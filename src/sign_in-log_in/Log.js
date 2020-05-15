@@ -5,11 +5,15 @@ export default class Sign extends Component {
     return (
       <div className="Signup-modal">
         <form className="Signup-Form">
-          <h2 className="Modal-Title">SignUp</h2>
+          <h2 className="Modal-Title">Log-In</h2>
           <hr />
-          <button className="CloseBtn" onClick={this.props.HideModal}>
-            X
-          </button>
+          <input
+            type="button"
+            value="X"
+            className="CloseBtn"
+            onClick={this.props.HideLogModal}
+          />
+
           <h4>Email</h4>
           <input
             Name="Email"
@@ -27,10 +31,19 @@ export default class Sign extends Component {
 
           <div className="Modal-Btns">
             <span>
-              <button className="Submit" onClick={this.props.Login}>
-                Sign Up
-              </button>
-              <button className="Cancel">Cancel</button>
+              <input
+                type="button"
+                value="Log In"
+                className="Submit"
+                onClick={this.props.Login}
+              />
+
+              <input
+                type="button"
+                value="Cancel"
+                className="Cancel"
+                onClick={this.props.HideLogModal}
+              />
             </span>
           </div>
         </form>

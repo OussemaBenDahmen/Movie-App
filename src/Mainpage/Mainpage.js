@@ -11,6 +11,8 @@ class Mainpage extends Component {
           Movies={this.props.Movies}
           AddFav={this.props.AddFav}
           Rating={this.props.Rating}
+          RemoveFilm={this.props.RemoveFilm}
+          isLogged={this.props.isLogged}
         />
 
         <button className="AddBtn" onClick={this.props.OpenFilmModal}>
