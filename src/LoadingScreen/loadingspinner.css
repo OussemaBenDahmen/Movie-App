@@ -1,0 +1,85 @@
+/***************Loading animation*******************/
+
+@keyframes loadingbackground {
+  0% {
+    background-color: rgb(16, 16, 24);
+  }
+  50% {
+    background-color: rgb(34, 34, 43);
+  }
+  100% {
+    background-color: rgb(16, 16, 24);
+  }
+}
+@keyframes lodingimagesize {
+  0% {
+    width: 150px;
+    filter: invert(0);
+  }
+  50% {
+    width: 200px;
+    filter: invert(1);
+  }
+  100% {
+    width: 150px;
+    filter: invert(0);
+  }
+}
+@keyframes loadingbarcolor {
+  0% {
+    width: 20px;
+  }
+  50% {
+    width: 30px;
+    filter: invert(1);
+  }
+  100% {
+    width: 20px;
+    filter: invert(0);
+  }
+}
+
+/******************Component style**************************/
+
+.loading {
+  width: 100%;
+  min-height: 700px;
+  padding-top: 200px;
+  text-align: center;
+  animation: loadingbackground 3s infinite;
+}
+.loadinglogo {
+  animation: lodingimagesize 2s infinite;
+}
+.loadingbar {
+  position: absolute;
+  left: 32%;
+  bottom: 50%;
+}
+.loading1,
+.loading2,
+.loading3,
+.loading4,
+.loading5 {
+  width: 20px;
+  margin: 30px;
+}
+.loading1 {
+  animation: loadingbarcolor 1s infinite;
+}
+.loading2 {
+  animation: loadingbarcolor 1s infinite;
+  animation-delay: 500ms;
+}
+.loading3 {
+  animation: loadingbarcolor 1s infinite;
+  animation-delay: 1s;
+}
+.loading4 {
+  animation: loadingbarcolor 1s infinite;
+  animation-delay: 1.5s;
+}
+.loading5 {
+  animation: loadingbarcolor 1s infinite;
+  animation-delay: 2s;
+}

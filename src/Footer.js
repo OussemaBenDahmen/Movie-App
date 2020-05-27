@@ -17,13 +17,13 @@ class Footer extends Component {
             <h5 className="footer-title">Contact Us</h5>
             <ul className="Link-List">
               <li className="list-styled">
-                <a href="">Facebook</a>
+                <a href="/">Facebook</a>
               </li>
               <li className="list-styled">
-                <a href="">Github</a>
+                <a href="/">Github</a>
               </li>
               <li className="list-styled">
-                <a href="">Twitter</a>
+                <a href="/">Twitter</a>
               </li>
             </ul>
           </div>

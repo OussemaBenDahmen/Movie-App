@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./movieCard.css";
-import { BrowserRouter as Router, Link, Switch, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class MovieCard extends Component {
   render() {

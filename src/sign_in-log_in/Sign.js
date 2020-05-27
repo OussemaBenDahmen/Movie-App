@@ -59,7 +59,7 @@ export default class Sign extends Component {
               />
             </span>
             <p>
-              Do you have an <a href={""}>Account</a>?
+              Do you have an <a href="/">Account</a>?
             </p>
           </div>
         </form>

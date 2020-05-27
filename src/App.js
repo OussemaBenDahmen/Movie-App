@@ -10,6 +10,7 @@ import logo from "./logo.png";
 import SearchByRate from "./SearchByRate";
 import Log from "./sign_in-log_in/Log";
 import Footer from "./Footer";
+import LoadingSpinner from "./LoadingScreen/LoadingSpinner";
 const profiles = [];
 
 class App extends Component {
@@ -106,8 +107,14 @@ class App extends Component {
     Films: this.movies,
     rate: 1,
     isLogged: false,
+    isLoading: true,
   };
   /***********************Functionalities*******************************/
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({ isLoading: false });
+    }, 7000);
+  }
 
   /**********ModalDisplay toggle functions************/
   DisplayModal = () => {
@@ -197,7 +204,7 @@ class App extends Component {
   };
   SearchName = (e) => {
     this.setState({ value: e.target.value });
-    if (e.target.value.length != "" && this.state.rate) {
+    if (e.target.value.length !== "" && this.state.rate) {
       let ratedfilm = this.movies.filter(
         (el) => el.rate.length >= this.state.rate
       );
@@ -377,45 +384,51 @@ class App extends Component {
             </nav>
           </div>
           {/* ------------------------------------- */}
-          <div className="Body">
-            <Switch>
-              <Route exact path="/">
-                <Mainpage
-                  Movies={this.state.Films}
-                  AddFav={this.AddFav}
-                  OpenFilmModal={this.OpenFilmModal}
-                  Rating={this.Rating}
-                  RemoveFilm={this.RemoveFilm}
-                  isLogged={this.state.isLogged}
-                />
-              </Route>
-              <Route path="/Favourites">
-                <Favourites
-                  Favourites={
-                    this.state.value
-                      ? this.Favourites.filter((el) =>
-                          el.title.toLowerCase().includes(this.state.value)
-                        )
-                      : this.Favourites
-                  }
-                  RemoveFav={this.RemoveFav}
-                />
-              </Route>
-              {this.movies.map((el) => (
-                <Route path={`/${el.title}`}>
-                  <Filmpage
-                    el={el}
-                    isHidden={this.state.isHidden}
-                    GetIndex={this.GetIndex}
-                    ChangeDescription={this.ChangeDescription}
-                    DescriptionEditor={this.DescriptionEditor}
-                    newDescription={this.state.newDescription}
-                    Edit={this.Edit}
+          {this.state.isLoading ? (
+            <div className="loding">
+              <LoadingSpinner />
+            </div>
+          ) : (
+            <div className="Body">
+              <Switch>
+                <Route exact path="/">
+                  <Mainpage
+                    Movies={this.state.Films}
+                    AddFav={this.AddFav}
+                    OpenFilmModal={this.OpenFilmModal}
+                    Rating={this.Rating}
+                    RemoveFilm={this.RemoveFilm}
+                    isLogged={this.state.isLogged}
                   />
                 </Route>
-              ))}
-            </Switch>
-          </div>
+                <Route path="/Favourites">
+                  <Favourites
+                    Favourites={
+                      this.state.value
+                        ? this.Favourites.filter((el) =>
+                            el.title.toLowerCase().includes(this.state.value)
+                          )
+                        : this.Favourites
+                    }
+                    RemoveFav={this.RemoveFav}
+                  />
+                </Route>
+                {this.movies.map((el) => (
+                  <Route path={`/${el.title}`}>
+                    <Filmpage
+                      el={el}
+                      isHidden={this.state.isHidden}
+                      GetIndex={this.GetIndex}
+                      ChangeDescription={this.ChangeDescription}
+                      DescriptionEditor={this.DescriptionEditor}
+                      newDescription={this.state.newDescription}
+                      Edit={this.Edit}
+                    />
+                  </Route>
+                ))}
+              </Switch>
+            </div>
+          )}
           <Footer />
         </div>
       </Router>
