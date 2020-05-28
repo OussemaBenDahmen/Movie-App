@@ -14,15 +14,17 @@
 @keyframes lodingimagesize {
   0% {
     width: 150px;
-    filter: invert(0);
+    margin-top: 50px;
+    filter: invert(1);
   }
   50% {
     width: 200px;
-    filter: invert(1);
+    filter: invert(0);
   }
   100% {
     width: 150px;
-    filter: invert(0);
+    margin-top: 50px;
+    filter: invert(1);
   }
 }
 @keyframes loadingbarcolor {
@@ -46,14 +48,15 @@
   min-height: 700px;
   padding-top: 200px;
   text-align: center;
-  animation: loadingbackground 3s infinite;
+  animation: loadingbackground 2s infinite;
 }
 .loadinglogo {
+  margin-right: 75px;
   animation: lodingimagesize 2s infinite;
 }
 .loadingbar {
   position: absolute;
-  left: 32%;
+  left: 30%;
   bottom: 50%;
 }
 .loading1,
